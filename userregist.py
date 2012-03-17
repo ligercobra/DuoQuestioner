@@ -4,12 +4,7 @@
 import os
 import cgi
 import cgitb
-import urllib2
 from Cookie import SimpleCookie
-import sys
-import time
-import datetime
-from dateutil.relativedelta import *
 
 #from view import UserView
 from Model import UserLogic
