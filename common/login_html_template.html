@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<link rel="stylesheet" href="./common/bootstrap.css">
+<link rel="shortcut icon" href="./common/favicon.ico">
+<style type="text/css">
+    body {
+        padding-top: 60px;
+    }
+</style>
+<title>Welcome|Weekly Report System</title>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="#">Weekly Report System</a>
+            <ul class="nav">
+            <li class="active"><a href="#">Welcome</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="hero-unit">
+            <h1>Welcome!</h1>
+            <p>Hirose-Lab's Weekly Report System.</p>
+        </div>
+        <div class="row">
+            <div class="span8">
+                <h2>Login</h2>
+                <p>Please fill in the following blanks.<br />
+                    {{if login_e==1}}
+                       <div class="alert-message warning">
+                           <p><strong>The ID or Password you enterd is incorrect.</strong></p></div>
+                    {{endif}}
+                    {{if long_time==1}}
+                       <div class="alert-message warning">
+                           <p><strong>Your session has expired because you have remain idle for more than 24 hours.</strong></p></div>
+                    {{endif}}
+                    <form action="login_checker.py" method="POST">
+                    ID&nbsp;<input type="text" name="regid" ><br /><br />
+                    Password&nbsp;<input type="password" name="upass" ><br /><br />
+                    <input type="submit" value="login">
+                    </form>
+                </p>
+            </div>
+            <div class="span8">
+                <h2>Join today!</h2>
+                <p>New to Here? Please fill in the following blanks.<br /><br />
+                    {{if ureg==1}}
+                        <div class="alert-message success">
+                            OK. Registration is finished.<br />
+                            Please login.
+                           <p><strong></strong></p></div>
+                    {{elif ureg==0}}
+                       <div class="alert-message error">
+                           <p><strong>Sorry, someone already has that ID.<br />
+                               Please enter another new ID.</strong></p></div>
+                    {{else}}
+                    {{endif}}
+                    <span class="label important">NOTE</span><br />
+                    You must use;<br />
+                    ID : four or more characters*.<br />
+                    Password : six or more characters*. <br /><br />
+                    
+                    * Only digits(0-9) or alphabets(a-z,A-Z), underscore(_) can be used.
+                    <br /><br />
+                    <form action="userregist.py" method="POST">
+                    ID&nbsp;<input type="text" name="regid" ><br /><br />
+                    Password&nbsp;<input type="password" name="upass" ><br /><br />
+                    <input type="submit" value="Join Today!">
+                    </form>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
