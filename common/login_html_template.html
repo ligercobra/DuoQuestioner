@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-style-Type" content="text/css" />
 <meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow,noarchive" />
 <link rel="stylesheet" href="./common/bootstrap.css">
 <link rel="shortcut icon" href="./common/favicon.ico">
@@ -12,27 +13,32 @@
         padding-top: 60px;
     }
 </style>
-<title>Welcome|Weekly Report System</title>
+<title>Welcome|Duo Questioner</title>
 </head>
 <body>
 
-<div class="topbar">
-    <div class="topbar-inner">
-        <div class="container-fluid">
-            <a class="brand" href="#">Weekly Report System</a>
-            <ul class="nav">
-            <li class="active"><a href="#">Welcome</a></li>
-            </ul>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Duo Questioner</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#">Welcome</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
     <div class="container">
         <div class="hero-unit">
             <h1>Welcome!</h1>
-            <p>Hirose-Lab's Weekly Report System.</p>
+            <p>Duo Questioner System.</p>
         </div>
         <div class="row">
-            <div class="span8">
+            <div class="span6">
                 <h2>Login</h2>
                 <p>Please fill in the following blanks.<br />
                     {{if login_e==1}}
@@ -50,7 +56,7 @@
                     </form>
                 </p>
             </div>
-            <div class="span8">
+            <div class="span6">
                 <h2>Join today!</h2>
                 <p>New to Here? Please fill in the following blanks.<br /><br />
                     {{if ureg==1}}

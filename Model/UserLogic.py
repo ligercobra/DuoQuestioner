@@ -27,10 +27,8 @@ class AnsTB(BaseModel):
 class LastTB(BaseModel):
     lid = peewee.PrimaryKeyField() #primary key index
     usid = peewee.IntegerField() #user id
-    qid = peewee.IntegerField() #question id
     secid = peewee.IntegerField() #section id
-    anstime = peewee.DateTimeField() #time of answer
-    ans = peewee.IntegerField() #user's answer(1 or 0)
+    ansrate = peewee.DateTimeField(null=True) #answer rate last time
 
 class QuesTB(BaseModel):
     qid = peewee.PrimaryKeyField() #quesiton id,primary key index
