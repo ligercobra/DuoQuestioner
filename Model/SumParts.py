@@ -38,8 +38,8 @@ class SumParts(object):
             return False
         return True
     
-    def check_pid(self,pid):
-        if(not (isinstance(pid,str) and int(pid) > 0)):
+    def check_page(self,page):
+        if(not (isinstance(page,str) and int(page) > 0 and int(page) <6 )):
             return False
         return True
     
