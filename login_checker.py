@@ -10,7 +10,6 @@ import sys
 import time
 import datetime
 
-#from view import UserView
 from Model import SumParts
 from Model import UserLogin
 
