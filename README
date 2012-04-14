@@ -1,4 +1,5 @@
-Files
+Many thanks for the following OSS.
+
     tempita
     peewee
     TwitterBootStrap
@@ -6,7 +7,7 @@ Files
 about tempita License
     see tempita/PKG-INFO
 about peewee License
-    see Model/peewee_LICENSE
+    see LICENSES/peewee_LICENSE
 about TwitterBootStrap
     see common/TwitterBootStrap_LICENSE
 

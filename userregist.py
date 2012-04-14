@@ -4,46 +4,51 @@
 import os
 import cgi
 import cgitb
-from Cookie import SimpleCookie
+import urllib2
+import sys
+import time
+import datetime
+from dateutil.relativedelta import *
 
-#from view import UserView
-from Model import UserLogic
-from Model import SumParts
-from Model import UserLogin
+import utils
+import models
 
-'''
-formに正しく値が入っているか
-'''
 def form_ref(mform):
     if(("regid" in mform) and ("upass" in mform)):
-        return True
-    else:
-        return False
+        if(mform.getfirst("regid","") !="" and (mform.getfirst("upass","") != "")):
+            return True
+    return False
 
-ck = SimpleCookie()
-ck.load(os.environ.get("HTTP_COOKIE",""))
 form = cgi.FieldStorage()
-sump = SumParts.SumParts()
-trans = SumParts.Transporter()
-ulauth = UserLogin.UserRegist()
+ulauth = models.UserRegist()
+mnck = utils.ManageCookie()
 
 '''
-formをチェックし空ならエラー
+check form
 '''
 if(not form_ref(form)):
-    trans.to_registuser_result(fl=False)
+    mnck.destroy_allck()
+    mnck.print_ck()
+    utils.to_login()
+    sys.exit()
 
 tmp_regid = form.getfirst("regid","").decode("utf-8")
 tmp_password = form.getfirst("upass","").decode("utf-8")
 
-'''
-入力された文字列をチェック
-'''
-if(not sump.check_userauth(tmp_regid,tmp_password)):
-    trans.to_registuser_result(fl=False)
+if(not utils.check_userauth(tmp_regid,tmp_password)):
+    mnck.destroy_allck()
+    mnck.set_ck(ureg="2")
+    mnck.print_ck()
+    utils.to_login()
 else:
     if(ulauth.userinsert(tmp_regid,tmp_password)):
-        trans.to_registuser_result(fl=True)
+        mnck.destroy_allck()
+        mnck.set_ck(ureg="1")
+        mnck.print_ck()
+        utils.to_login()
     else:
-        trans.to_registuser_result(fl=False)
-
+        mnck.destroy_allck()
+        mnck.set_ck(ureg="0")
+        mnck.print_ck()
+        utils.to_login()
+sys.exit()
