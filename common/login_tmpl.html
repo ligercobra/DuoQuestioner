@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<link rel="stylesheet" href="./common/bootstrap.css">
+<link rel="shortcut icon" href="./common/favicon.ico">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+<title>Welcome to DuoQuestioner</title>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">DuoQuestioner</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="#">Welcom</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <div class="hero-unit">
+      <h1>Welcome!</h1>
+      <p>DuoQuestioner is questioner system of Duo3.0</p>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <h2>Login</h2>
+        <p>Please fill in the following blanks.<br />
+          {{if login_e==1}}
+             <div class="alert alert-error">
+               <p><strong>The ID or Password you enterd is incorrect.</strong></p></div>
+          {{endif}}
+          {{if long_time==1}}
+             <div class="alert alert-error">
+               <p><strong>Your session has expired because you have remain idle for more than 24 hours.</strong></p></div>
+          {{endif}}
+          <form action="login_checker.py" method="POST">
+          ID&nbsp;<input type="text" name="regid" ><br /><br />
+          Password&nbsp;<input type="password" name="upass" ><br /><br />
+          <input type="submit" value="login">
+          </form>
+        </p>
+      </div>
+      <div class="span6">
+        <h2>Join today!</h2>
+        <p>New to Here? Please fill in the following blanks.<br /><br />
+          {{if ureg==1}}
+            <div class="alert alert-success">
+              OK. Registration is finished.<br />
+              Please login.
+               <p><strong></strong></p></div>
+          {{elif ureg==0}}
+             <div class="alert alert-error">
+               <p>Sorry, someone already has that ID.<br />
+                 Please enter another new ID.</p></div>
+          {{elif ureg==2}}
+             <div class="alert alert-error">
+                 <p>Sorry, ID ( four or more characters ) and Password ( six or more characters ) is used only digits, alphabets, underscore.</p></div>
+          {{else}}
+          {{endif}}
+          <span class="label label-info">NOTE</span><br />
+          You must use;<br />
+          ID : four or more characters*.<br />
+          Password : six or more characters*. <br /><br />
+          
+          * Only digits(0-9) or alphabets(a-z,A-Z), underscore(_) can be used.
+          <br /><br />
+          <form action="userregist.py" method="POST">
+          ID&nbsp;<input type="text" name="regid" ><br /><br />
+          Password&nbsp;<input type="password" name="upass" ><br /><br />
+          <input type="submit" value="Join Today!">
+          </form>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
