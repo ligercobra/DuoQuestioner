@@ -14,15 +14,16 @@ import utils
 import models
 
 def q_text(sec):
+
     sec_order = {
-            "1":range(1,10),"11":range(11,20),
-            "21":range(21,30),"31":range(31,40),"41":range(41,45)
+            "1":range(1,11),"11":range(11,21),
+            "21":range(21,31),"31":range(31,41),"41":range(41,46)
             }
     if(sec in sec_order):
         tmp_sec = sec_order[sec]
     else:
-        tmp_sec = "1"
-    return "home_text_tmpl.html","text",sec_order[tmp_sec]
+        tmp_sec = sec_order["1"]
+    return ("home_text_tmpl.html","text",tmp_sec)
 
 def form_ref(mform):
     p_order = ["text",]
@@ -31,9 +32,12 @@ def form_ref(mform):
         "text":q_text,
         }
     
-    if("q" in mform):
+    if("q" in mform and form.getfirst("q","") in p_order):
         tmp_q = form.getfirst("q","")
-        tmp_sec = form.getfirst("sec","")
+        try:
+            tmp_sec = form.getfirst("sec","")
+        except:
+            tmp_sec = "1"
         res["tmpl"],res["q"],res["sec"]=q_options.get(tmp_q,q_text)(tmp_sec)    
     return res
 
@@ -57,6 +61,9 @@ else:
     uinfo = uauth.get_uinfo(mregid=reg,mseskey=ses)
     if(not uinfo):
         utils.to_login()
+
+print("Content-type: text/html")
+print("\n\n")
 
 #get section
 pr = form_ref(form)
