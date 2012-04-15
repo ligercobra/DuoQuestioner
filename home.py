@@ -27,7 +27,7 @@ def q_text(sec):
 
 def form_ref(mform):
     p_order = ["text",]
-    res = {"q":"text","sec":range(1,10),"tmpl":"home_text_tmpl.html"}
+    res = {"q":"text","sec":range(1,11),"tmpl":"home_text_tmpl.html"}
     q_options = {
         "text":q_text,
         }
