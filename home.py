@@ -62,9 +62,6 @@ else:
     if(not uinfo):
         utils.to_login()
 
-print("Content-type: text/html")
-print("\n\n")
-
 #get section
 pr = form_ref(form)
 
