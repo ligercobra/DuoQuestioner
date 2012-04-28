@@ -8,16 +8,16 @@ import ConfigParser
 import csv
 from datetime import datetime
 
-#mysqlconf = ConfigParser.SafeConfigParser()
-#mysqlconf.read("../mysqlconf.ini")
-#MYDB = peewee.MySQLDatabase(mysqlconf.get('mysql','dbname'),
-#                            user=mysqlconf.get('mysql','user'),
-#                            host=mysqlconf.get('mysql','host'),
-#                            port=int(mysqlconf.get('mysql','port')),
-#                            passwd=mysqlconf.get('mysql','passwd')
-#                            )
-MYDB = peewee.SqliteDatabase('DuoDB.db')
-csvfile = '../duo_table.csv'
+mysqlconf = ConfigParser.SafeConfigParser()
+mysqlconf.read("../mysqlconf.ini")
+MYDB = peewee.MySQLDatabase(mysqlconf.get('mysql','dbname'),
+                            user=mysqlconf.get('mysql','user'),
+                            host=mysqlconf.get('mysql','host'),
+                            port=int(mysqlconf.get('mysql','port')),
+                            passwd=mysqlconf.get('mysql','passwd')
+                            )
+#MYDB = peewee.SqliteDatabase('DuoDB.db')
+#csvfile = '../duo_table.csv'
 
 class BaseModel(peewee.Model):
     class Meta:
