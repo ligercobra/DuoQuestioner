@@ -1,0 +1,49 @@
+{{inherit "layout_tmpl.html"}}
+{{def contents}}
+{{self.cont | html}}
+{{enddef}}
+{{def sidebar}}
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header">Text</li>
+    <li><a href="./home.py?q=text&sec=1">1〜10</a></li>
+    <li><a href="./home.py?q=text&sec=11">11〜20</a></li>
+    <li><a href="./home.py?q=text&sec=21">21〜30</a></li>
+    <li><a href="./home.py?q=text&sec=31">31〜40</a></li>
+    <li><a href="./home.py?q=text&sec=41">41〜45</a></li>
+    <li class="nav-header">Sound</li>
+    <li><a href="./home.py?q=sound&sec=1">1〜10</a></li>
+    <li><a href="./home.py?q=sound&sec=11">11〜20</a></li>
+    <li><a href="./home.py?q=sound&sec=21">21〜30</a></li>
+    <li><a href="./home.py?q=sound&sec=31">31〜40</a></li>
+    <li><a href="./home.py?q=sound&sec=41">41〜45</a></li>
+  </ul>
+</div>
+{{enddef}}
+
+{{def menubar}}
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-co    se">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="home.py">Duo Questioner</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          {{default menu_act = {"home":"","status":"","text":"","sound":""} }}
+          {{py:menu_act[menu]="active"}} 
+          <li class="{{menu_act["home"]}}"><a href="./home.py">Home</a></li>
+          <li class="{{menu_act["status"]}}"><a href="./status.py">Status</a></li>
+          <li class="{{menu_act["text"]}}"><a href="./section_text.py">Text</a></li>
+          <li class="{{menu_act["sound"]}}"><a href="./section_sound.py">Sound</a></li>
+          <li><a href="./logout.py">Logout</a></li>
+        </ul>
+        <p class="navbar-text pull-right">Logged in as <a href="#">{{username}}</a></p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div><!--/.navbar navbar-fixed-top -->
+{{enddef}}
