@@ -1,0 +1,46 @@
+{{inherit "common/sub_tmpl.html"}}
+{{def cont}}
+<div class="hero-unit">
+  <h1>Section {{secid}}</h1>
+  <p>hogehogeしてください</p>
+</div>
+<form action="insert_ans.py" method="POST">
+  {{for loop, question in looper(questions)}}
+    {{py:qid=question['qid']}}
+    {{py:enQuestion=question['en']}}
+    {{py:jpQuestion=question['jp']}}
+    {{qid}} : {{enQuestion}}<br>
+    <div class="row-fluid">
+      <div class="span1">
+        <input type="button" onclick="show_block2('{{qid}}');" value="Answer" />
+      </div><!--/span-->
+      <div id="{{qid}}" style="visibility:hidden;">
+        <div class="span1">
+          <label class="radio">
+            <input type="radio" name="ansRadio{{qid}}" value="1" checked>
+            YES
+          </label>
+          <label class="radio">
+            <input type="radio" name="ansRadio{{qid}}" value="0">
+            NO
+          </label>
+        </div><!--/span-->
+        <div class="span7">
+          <div class="alert alert-info">
+            {{jpQuestion}}
+          </div>
+        </div><!--/span-->
+      </div><!--/hidden-->
+    </div><!--/row-->
+    <br>
+  {{endfor}}
+  <br>
+  <input type="hidden" name="usid" value="{{usid}}">
+  <input type="hidden" name="secid" value="{{secid}}">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <!--<button type="submit" class="btn">Cancel</button>-->
+
+  <br>
+  <br>
+</form>
+{{enddef}}

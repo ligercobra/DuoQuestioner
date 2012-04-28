@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-style-Type" content="text/css" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <link rel="stylesheet" href="./common/bootstrap.css">
+    <link rel="shortcut icon" href="./common/favicon.ico">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 20px;
+      }
+    </style>
+    <title>{{title}}</title>
+    <script language="javascript" type="text/javascript">  
+      function show_block(id){
+        if(document.getElementById(id).style.display == ""){
+          document.getElementById(id).style.display = "none";
+        }else{
+          document.getElementById(id).style.display = "";
+        }
+      }
+      function show_block2(id){
+        if(document.getElementById(id).style.visibility == ""){
+          document.getElementById(id).style.visibility = "hidden";
+        }else{
+          document.getElementById(id).style.visibility = "";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    {{self.menubar | html}}
+    <div class="container-fluid">
+      <div class="span3">
+        {{self.sidebar | html}}
+      </div><!--/span-->
+      <div class="span9">
+        {{self.contents | html}}
+      </div><!--/span-->
+
+      </div><!--/.container-fluid -->
+      
+      <hr>
+
+      <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <address>Copyright &copy; 2009-2011 KN3MS All Rights Reserved.</address>
+      </footer>
+
+  </body>
+</html>

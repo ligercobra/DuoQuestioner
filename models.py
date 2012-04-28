@@ -5,7 +5,8 @@ import hashlib
 import peewee
 import uuid
 import ConfigParser
-
+import csv
+from datetime import datetime
 
 mysqlconf = ConfigParser.SafeConfigParser()
 mysqlconf.read("../mysqlconf.ini")
@@ -15,6 +16,9 @@ MYDB = peewee.MySQLDatabase(mysqlconf.get('mysql','dbname'),
                             port=int(mysqlconf.get('mysql','port')),
                             passwd=mysqlconf.get('mysql','passwd')
                             )
+#MYDB = peewee.SqliteDatabase('DuoDB.db')
+#csvfile = '../duo_table.csv'
+
 class BaseModel(peewee.Model):
     class Meta:
         database = MYDB
@@ -145,3 +149,34 @@ class UserSelect(UserBase):
         res = [{"qnum":u.qnum,"secid":u.secid} for u in sq]
         return res
 
+    def section_question(self,secid):
+        sq = QuesTB.select().where(secid__in=secid)
+        res = [{"qid":u.qid, "en":u.en, "jp":u.jp} for u in sq]
+        return res
+ 
+    def get_qid(self,secid):
+        sq = QuesTB.select().where(secid__in=secid)
+        res = [{"qid":u.qid} for u in sq]
+        return res
+ 
+class UserInsert(UserBase):
+    def questb_all(self):
+        reader = csv.reader(open(csvfile, 'rU'), dialect='excel')
+        for row in reader:
+            u_en = unicode(row[1],'utf-8')
+            u_jp = row[2].rsplit('.')[1]
+            u_jp = unicode(u_jp,'utf-8')
+            u_secid = int(unicode(row[3],'utf-8'))
+            iq = peewee.InsertQuery(QuesTB, en=u_en, jp=u_jp, secid=u_secid)
+            iq.execute()
+
+    def result(self, usid, secid, qid_ans):
+        nowtime = datetime.now().strftime(u'%Y-%m-%d %H:%M:%S')
+        for dict_qa in qid_ans:
+            iq = AnsTB.insert(usid=usid, secid=secid, \
+                qid=dict_qa['qid'], ans=dict_qa['ans'], \
+                anstime=nowtime)
+            #iq = peewee.InsertQuery(AnsTB, usid=usid, secid=secid, \
+            #    qid=dict_qa['qid'], ans=dict_qa['ans'], \
+            #    anstime=nowtime)
+            iq.execute()
