@@ -5,7 +5,7 @@ import hashlib
 import peewee
 import uuid
 import ConfigParser
-
+import csv
 
 mysqlconf = ConfigParser.SafeConfigParser()
 mysqlconf.read("../mysqlconf.ini")
