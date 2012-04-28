@@ -74,6 +74,8 @@ class _TemplateBreak(Exception):
 
 
 def get_file_template(name, from_template):
+    if(from_template.name == None):
+        from_template.name="" 
     path = os.path.join(os.path.dirname(from_template.name), name)
     return from_template.__class__.from_filename(
         path, namespace=from_template.namespace,
